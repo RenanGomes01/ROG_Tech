@@ -101,6 +101,15 @@ header .container {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--light-color);
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+    max-width: 150px;
+    object-fit: contain;
 }
 
 .dev-tag {
@@ -1093,167 +1102,26 @@ body.light-theme {
   }
 }
 
-// Elementos DOM
-document.addEventListener('DOMContentLoaded', function() {
-    // Ano atual no footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-    
-    // Menu mobile
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navMenu = document.querySelector('nav ul');
-    
-    if (menuToggle) {
-        menuToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            document.body.classList.toggle('menu-open');
-        });
-    }
-    
-    // Fechar menu ao clicar em links
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            navMenu.classList.remove('active');
-            document.body.classList.remove('menu-open');
-        });
-    });
-    
-    // Efeito de digitação
-    const typedTextElement = document.querySelector('.typed-text');
-    const cursorElement = document.querySelector('.cursor');
-    
-    const textArray = [
-        "Sistemas de Vendas",
-        "Controle de Estoque",
-        "Páginas Web",
-        "Aplicativos"
-    ];
-    
-    let textArrayIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typingDelay = 100;
-    
-    function type() {
-        const currentText = textArray[textArrayIndex];
-        
-        if (isDeleting) {
-            typedTextElement.textContent = currentText.substring(0, charIndex - 1);
-            charIndex--;
-            typingDelay = 50;
-        } else {
-            typedTextElement.textContent = currentText.substring(0, charIndex + 1);
-            charIndex++;
-            typingDelay = 100;
-        }
-        
-        if (!isDeleting && charIndex === currentText.length) {
-            isDeleting = true;
-            typingDelay = 1000; // Pausa antes de começar a apagar
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            textArrayIndex = (textArrayIndex + 1) % textArray.length;
-            typingDelay = 500; // Pausa antes de começar a digitar o próximo texto
-        }
-        
-        setTimeout(type, typingDelay);
-    }
-    
-    if (typedTextElement && cursorElement) {
-        setTimeout(type, 1000);
-    }
-    
-    // Animação de estatísticas
-    const statNumbers = document.querySelectorAll('.stat-number');
-    
-    function animateStats() {
-        statNumbers.forEach(stat => {
-            const target = parseInt(stat.getAttribute('data-count'));
-            const duration = 2000; // 2 segundos
-            const step = target / (duration / 20); // 20ms por passo
-            let current = 0;
-            
-            const updateStat = () => {
-                current += step;
-                if (current < target) {
-                    stat.textContent = Math.floor(current);
-                    requestAnimationFrame(updateStat);
-                } else {
-                    stat.textContent = target;
-                }
-            };
-            
-            updateStat();
-        });
-    }
-    
-    // Animação das barras de habilidades
-    const skillLevels = document.querySelectorAll('.skill-level');
-    
-    function animateSkills() {
-        skillLevels.forEach(skill => {
-            const width = skill.style.width;
-            skill.style.width = '0';
-            setTimeout(() => {
-                skill.style.width = width;
-            }, 300);
-        });
-    }
-    
-    // Cursor personalizado
-    const cursor = document.querySelector('.cursor-follower');
-    
-    if (cursor) {
-        document.addEventListener('mousemove', e => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-        
-        document.addEventListener('mousedown', () => {
-            cursor.style.transform = 'translate(-50%, -50%) scale(0.8)';
-            cursor.style.backgroundColor = 'rgba(16, 185, 129, 0.5)';
-        });
-        
-        document.addEventListener('mouseup', () => {
-            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-            cursor.style.backgroundColor = 'rgba(37, 99, 235, 0.5)';
-        });
-        
-        document.querySelectorAll('a, button, .btn, .filter-btn, .social-link').forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                cursor.style.backgroundColor = 'rgba(16, 185, 129, 0.3)';
-                cursor.style.mixBlendMode = 'difference';
-            });
-            
-            item.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursor.style.backgroundColor = 'rgba(37, 99, 235, 0.5)';
-                cursor.style.mixBlendMode = 'screen';
-            });
-        });
-    }
-    
-    // Filtro de projetos
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
-    
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Remover classe ativa de todos os botões
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            
-            // Adicionar classe ativa ao botão clicado
-            button.classList.add('active');
-            
-            const filter = button.getAttribute('data-filter');
-            
-            projectCards.forEach(card => {
-                if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-    });
+/* Animações para mensagem de sucesso do formulário */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
