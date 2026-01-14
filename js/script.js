@@ -167,23 +167,64 @@ document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contactForm');
     
     if (contactForm) {
+        // Configurar URL de redirecionamento após envio
+        const currentUrl = window.location.href.split('#')[0];
+        const nextInput = contactForm.querySelector('input[name="_next"]');
+        if (nextInput) {
+            nextInput.value = currentUrl + '#contato?success=true';
+        }
+        
         contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Simulação de envio de formulário
             const submitButton = contactForm.querySelector('button[type="submit"]');
             const originalText = submitButton.textContent;
             
             submitButton.disabled = true;
             submitButton.textContent = 'Enviando...';
+            submitButton.style.opacity = '0.7';
             
+            // O formulário será enviado normalmente via FormSubmit
+            // Se houver erro, o botão será reabilitado
             setTimeout(() => {
-                alert('Mensagem enviada com sucesso! Em breve entrarei em contato.');
-                contactForm.reset();
-                submitButton.disabled = false;
-                submitButton.textContent = originalText;
-            }, 1500);
+                // Se após 10 segundos ainda estiver na mesma página, pode ter havido erro
+                const checkError = setTimeout(() => {
+                    if (submitButton.disabled) {
+                        submitButton.disabled = false;
+                        submitButton.textContent = originalText;
+                        submitButton.style.opacity = '1';
+                    }
+                }, 10000);
+            }, 100);
         });
+        
+        // Verificar se há parâmetro de sucesso na URL
+        if (window.location.search.includes('success=true') || window.location.hash.includes('success=true')) {
+            // Criar e exibir mensagem de sucesso
+            const successMessage = document.createElement('div');
+            successMessage.className = 'success-message';
+            successMessage.style.cssText = `
+                background: linear-gradient(135deg, #10b981, #059669);
+                color: white;
+                padding: 15px 20px;
+                border-radius: 8px;
+                margin-bottom: 20px;
+                text-align: center;
+                font-weight: 500;
+                animation: slideDown 0.3s ease-out;
+            `;
+            successMessage.textContent = '✓ Mensagem enviada com sucesso! Em breve entrarei em contato.';
+            contactForm.insertBefore(successMessage, contactForm.firstChild);
+            
+            // Remover mensagem após 5 segundos
+            setTimeout(() => {
+                successMessage.style.animation = 'slideUp 0.3s ease-out';
+                setTimeout(() => successMessage.remove(), 300);
+            }, 5000);
+            
+            // Limpar URL
+            if (window.history && window.history.replaceState) {
+                window.history.replaceState({}, document.title, window.location.pathname + '#contato');
+            }
+        }
     }
     
     // Animação ao scroll
