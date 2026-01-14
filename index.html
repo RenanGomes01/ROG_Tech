@@ -14,7 +14,7 @@
     <header>
         <div class="container">
             <div class="logo">
-                <span class="rogtech-tag">&lt;ROG Tech&gt;</span>
+                <img src="img/logo branca.png" alt="Logo">
             </div>
             <nav>
                 <ul>
@@ -207,7 +207,51 @@ function <span class="highlight">criarSolucao</span>() {
             </div>
             <div class="projects-grid">
                 
-                <!-- PROJETO 1: SISTEMA DE VENDAS E ESTOQUE -->
+                <!-- PROJETO 1: CAREV OFICINA -->
+                <div class="project-card" data-category="sistema">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-wrench"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Carev - Sistema de Gestão de Oficina</h3>
+                        <p>Sistema completo para gestão de oficina mecânica desenvolvido com React e Node.js, incluindo gestão de clientes, veículos, ordens de serviço e dashboard analítico.</p>
+                        <div class="project-tech">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>MySQL</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://renangomes01.github.io/carev-oficina/" target="_blank" class="btn-small"><i class="fas fa-eye"></i> Ver Demo</a>
+                            <a href="https://github.com/RenanGomes01/carev-oficina" target="_blank" class="btn-small"><i class="fab fa-github"></i> Código</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJETO 2: JK SOLUÇÕES EM TI -->
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>JK Soluções em TI</h3>
+                        <p>Site institucional desenvolvido com Next.js 14, apresentando serviços de consultoria de TI e segurança eletrônica, com design moderno e responsivo.</p>
+                        <div class="project-tech">
+                            <span>Next.js</span>
+                            <span>TypeScript</span>
+                            <span>Tailwind CSS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://renangomes01.github.io/JK-Solu-es-em-TI/" target="_blank" class="btn-small"><i class="fas fa-eye"></i> Ver Demo</a>
+                            <a href="https://github.com/RenanGomes01/JK-Solu-es-em-TI" target="_blank" class="btn-small"><i class="fab fa-github"></i> Código</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJETO 3: SISTEMA DE VENDAS E ESTOQUE -->
                 <div class="project-card" data-category="sistema">
                     <div class="project-image">
                         <div class="project-placeholder">
@@ -229,7 +273,7 @@ function <span class="highlight">criarSolucao</span>() {
                     </div>
                 </div>
 
-                <!-- PROJETO 2: LISTA DE TAREFAS -->
+                <!-- PROJETO 4: LISTA DE TAREFAS -->
                 <div class="project-card" data-category="web">
                     <div class="project-image">
                         <div class="project-placeholder">
@@ -251,7 +295,7 @@ function <span class="highlight">criarSolucao</span>() {
                     </div>
                 </div>
 
-                <!-- PROJETO 3: CATÁLOGO DE FILMES -->
+                <!-- PROJETO 5: CATÁLOGO DE FILMES -->
                 <div class="project-card" data-category="web">
                     <div class="project-image">
                         <div class="project-placeholder">
@@ -273,7 +317,7 @@ function <span class="highlight">criarSolucao</span>() {
                     </div>
                 </div>
 
-                <!-- PROJETO 4: SITE INSTITUCIONAL (Exemplo) -->
+                <!-- PROJETO 6: SITE INSTITUCIONAL -->
                 <div class="project-card" data-category="web">
                     <div class="project-image">
                         <div class="project-placeholder">
@@ -335,7 +379,10 @@ function <span class="highlight">criarSolucao</span>() {
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form id="contactForm">
+                    <form id="contactForm" action="https://formsubmit.co/dev.soluciona.ti@gmail.com" method="POST">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="">
+                        <input type="hidden" name="_template" value="box">
                         <div class="form-group">
                             <label for="name">Nome</label>
                             <input type="text" id="name" name="name" required>
@@ -353,9 +400,6 @@ function <span class="highlight">criarSolucao</span>() {
                             <textarea id="message" name="message" rows="5" required></textarea>
                         </div>
                         <button type="submit" class="btn primary">Enviar Mensagem</button>
-                        <a href="https://formsubmit.co/el/gipupo" class="social-link" title="E-mail">
-                            <i class="Enviar mensagem"></i>
-                        </a>
                     </form>
                 </div>
             </div>
