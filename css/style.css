@@ -1175,20 +1175,32 @@ body.light-theme {
     left: 0;
     width: 100%;
     height: 100%;
+    z-index: 1;
     transform-origin: 48% 38%;
     will-change: transform;
     transform: translateZ(0);
+    -webkit-transform: translateZ(0);
 }
 
 #intro-video {
     width: 100%;
     height: 100%;
+    min-width: 100%;
+    min-height: 100%;
     object-fit: cover;
+    object-position: center center;
     position: absolute;
     top: 0;
     left: 0;
-    will-change: auto;
-    transform: none;
+    opacity: 1;
+    visibility: visible;
+    background-color: #000;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+#intro-video.is-ready {
+    opacity: 1;
 }
 
 .intro-ui {
@@ -1204,10 +1216,11 @@ body.light-theme {
     z-index: 10;
     color: #fff;
     font-family: 'Courier New', Courier, monospace;
+    pointer-events: none;
 }
 
 #intro-container .intro-ui .typing-text {
-    font-size: 2rem;
+    font-size: clamp(1.25rem, 5vw, 2rem);
     font-weight: bold;
     color: #00ffcc;
     text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
@@ -1236,10 +1249,29 @@ body.light-theme {
 }
 
 #intro-container .intro-ui .scroll-indicator p {
-    font-size: 0.9rem;
+    font-size: clamp(0.75rem, 3.5vw, 0.9rem);
     margin-top: 10px;
     letter-spacing: 2px;
     text-transform: uppercase;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+@media (hover: none) and (pointer: coarse) {
+    #intro-container .intro-ui .mouse {
+        display: none;
+    }
+
+    #intro-container .intro-ui .scroll-indicator::before {
+        content: '';
+        display: block;
+        width: 24px;
+        height: 36px;
+        border: 2px solid #fff;
+        border-radius: 12px;
+        margin-bottom: 8px;
+        opacity: 0.8;
+    }
 }
 
 #intro-container .intro-ui .mouse {
