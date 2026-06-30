@@ -1158,3 +1158,125 @@ body.light-theme {
   }
 }
 
+/* Intro cinematográfica — overlay; portfólio permanece intacto abaixo no fluxo normal */
+#intro-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    background-color: #000;
+    overflow: hidden;
+    z-index: 9999;
+}
+
+#intro-video-zoom {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: 48% 38%;
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+#intro-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    will-change: auto;
+    transform: none;
+}
+
+.intro-ui {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#intro-container .intro-ui .typing-text {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #00ffcc;
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+    animation: blink-caret 0.8s step-end infinite;
+    height: auto;
+    margin-bottom: 0;
+}
+
+@keyframes blink-caret {
+    50% {
+        opacity: 0;
+    }
+}
+
+#intro-container .intro-ui .scroll-indicator {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0.7;
+    animation: none;
+    pointer-events: none;
+}
+
+#intro-container .intro-ui .scroll-indicator p {
+    font-size: 0.9rem;
+    margin-top: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+#intro-container .intro-ui .mouse {
+    width: 25px;
+    height: 40px;
+    border: 2px solid #fff;
+    border-radius: 15px;
+    position: relative;
+}
+
+#intro-container .intro-ui .wheel {
+    width: 3px;
+    height: 8px;
+    background-color: #fff;
+    border-radius: 2px;
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scroll-wheel 1.5s infinite;
+}
+
+@keyframes scroll-wheel {
+    0% {
+        top: 5px;
+        opacity: 1;
+    }
+    100% {
+        top: 20px;
+        opacity: 0;
+    }
+}
+
+html.intro-scroll-active {
+    scroll-behavior: auto;
+}
+
+body.intro-active {
+    overflow-x: hidden;
+}
